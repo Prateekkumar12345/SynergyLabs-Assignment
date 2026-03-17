@@ -21,11 +21,9 @@ __pycache__/
 output/
 temp/
 logs/
-*.mp4
 *.mov
 *.jpg
 *.png
-*.txt
 *.md
 !README.md
 
