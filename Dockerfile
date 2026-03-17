@@ -36,8 +36,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy Streamlit configuration
-COPY .streamlit/config.toml .streamlit/
+
 
 # Copy application files
 COPY main.py .
