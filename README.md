@@ -28,5 +28,34 @@ This repository contains three AI-powered tools developed as part of an internsh
 ---
 
 ## 🏗️ System Architecture
+┌─────────────────────────────────────────────────────────────────────┐
+│ Streamlit Frontend │
+│ (Multi-page Application) │
+└─────────────────────────────────────────────────────────────────────┘
+│
+┌───────────────────────────┼───────────────────────────┐
+▼ ▼ ▼
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│ Task 1: │ │ Task 2: │ │ Task 3: │
+│ Video Generator │ │ SEO Blog │ │ Architecture │
+│ (Page 1) │ │ Creator │ │ Pipeline │
+│ │ │ (Page 2) │ │ (Page 3) │
+└────────┬────────┘ └────────┬────────┘ └────────┬────────┘
+│ │ │
+▼ ▼ ▼
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│ Core Services │ │ Core Services │ │ Core Services │
+│ • NewsAPI │ │ • Mock Products │ │ • GPT-4o-mini │
+│ • Mock Data │ │ • GPT-4o-mini │ │ • JSON Schema │
+│ • DALL-E 3 │ │ • SEO Analysis │ │ • Mermaid │
+│ • OpenCV │ │ • Export Tools │ │ • Risk Analysis │
+└─────────────────┘ └─────────────────┘ └─────────────────┘
+│ │ │
+└───────────────────────────┼───────────────────────────┘
+▼
+┌─────────────────────────────┐
+│ OpenAI API Layer │
+│ • GPT-4o-mini (text) │
+│ • DALL-E 3 (images) │
+└─────────────────────────────┘
 
-### Overall Architecture
