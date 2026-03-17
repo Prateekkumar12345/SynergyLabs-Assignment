@@ -1,0 +1,46 @@
+# Virtual Environment
+venv/
+env/
+.venv/
+.env/
+ENV/
+venv.bak/
+env.bak/
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project Outputs
+output/
+temp/
+logs/
+*.mp4
+*.mov
+*.jpg
+*.png
+*.txt
+*.md
+!README.md
+
+
+
+# Python
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Logs
+*.log
