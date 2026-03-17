@@ -25,37 +25,22 @@ This repository contains three AI-powered tools developed as part of an internsh
 | **✍️ SEO Blog Creator** | Generates SEO-optimized blog posts from products | Product scraping, keyword research, AI content generation, SEO scoring |
 | **🏗️ Architecture Pipeline** | Converts business requirements to technical specs | Module breakdown, DB schemas, API design, pseudocode generation |
 
----
+## 📋 Project Structure
 
-## 🏗️ System Architecture
-┌─────────────────────────────────────────────────────────────────────┐
-│ Streamlit Frontend │
-│ (Multi-page Application) │
-└─────────────────────────────────────────────────────────────────────┘
+project/
+├── main.py                          # Unified launcher
+├── requirements.txt                 # Dependencies
+├── .env.example                      # Environment template
+├── .gitignore                        # Git ignore rules
+├── Dockerfile                        # Container config
+├── docker-compose.yml                # Docker services
+├── README.md                         # This file
 │
-┌───────────────────────────┼───────────────────────────┐
-▼ ▼ ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ Task 1: │ │ Task 2: │ │ Task 3: │
-│ Video Generator │ │ SEO Blog │ │ Architecture │
-│ (Page 1) │ │ Creator │ │ Pipeline │
-│ │ │ (Page 2) │ │ (Page 3) │
-└────────┬────────┘ └────────┬────────┘ └────────┬────────┘
-│ │ │
-▼ ▼ ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ Core Services │ │ Core Services │ │ Core Services │
-│ • NewsAPI │ │ • Mock Products │ │ • GPT-4o-mini │
-│ • Mock Data │ │ • GPT-4o-mini │ │ • JSON Schema │
-│ • DALL-E 3 │ │ • SEO Analysis │ │ • Mermaid │
-│ • OpenCV │ │ • Export Tools │ │ • Risk Analysis │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
-│ │ │
-└───────────────────────────┼───────────────────────────┘
-▼
-┌─────────────────────────────┐
-│ OpenAI API Layer │
-│ • GPT-4o-mini (text) │
-│ • DALL-E 3 (images) │
-└─────────────────────────────┘
-
+├── pages/                            # Multi-page apps
+│   ├── 1_🎬_Video_Generator.py       # Task 1
+│   ├── 2_✍️_SEO_Blog_Creator.py      # Task 2
+│   └── 3_🏗️_Architecture_Pipeline.py # Task 3
+│
+├── output/                           # Generated files
+├── temp/                             # Temporary files
+└── logs/                             # Application logs
