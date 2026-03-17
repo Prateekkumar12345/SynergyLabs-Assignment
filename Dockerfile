@@ -1,60 +1,53 @@
-# Use Python 3.11 slim image as base
+# Use lightweight Python image
 FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Set environment variables
+# Environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DEBIAN_FRONTEND=noninteractive \
     STREAMLIT_SERVER_PORT=8501 \
     STREAMLIT_SERVER_ADDRESS=0.0.0.0 \
     STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
 
-# Install system dependencies for OpenCV, Pillow, and other libraries
+# Install system dependencies (fixed versions)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     gcc \
-    g++ \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
     libgomp1 \
-    wget \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Create necessary directories
-RUN mkdir -p /app/pages /app/output /app/temp /app/.streamlit
+# Create required directories
+RUN mkdir -p /app/pages /app/output /app/temp
 
-# Copy requirements first for better caching
+# Copy requirements first (for caching)
 COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
-
-
 
 # Copy application files
 COPY main.py .
 COPY pages/ ./pages/
 
-# Create a non-root user to run the app
-RUN useradd -m -u 1000 appuser && \
-    chown -R appuser:appuser /app
+# OPTIONAL: Only include if you actually have config file
+# COPY .streamlit/config.toml .streamlit/
 
-# Switch to non-root user
+# Create non-root user
+RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Expose Streamlit port
+# Expose port
 EXPOSE 8501
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8501/_stcore/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
-# Run the application
-ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Run Streamlit
+CMD ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]
